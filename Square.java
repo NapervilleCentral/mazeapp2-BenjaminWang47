@@ -8,10 +8,10 @@
 public class Square
 {
 
-    public static final int SPACE = 0;
-    public static final int WALL = 1;
-    public static final int START = 2;
-    public static final int EXIT = 3;
+    public static final char SPACE = '_';
+    public static final char WALL = '#';
+    public static final char START = 'S';
+    public static final char EXIT = 'E';
 
     // the state of the square in the context of the maze solver
     public enum State
@@ -24,7 +24,7 @@ public class Square
 
     private int row;
     private int col;
-    private int type;
+    private char type;
     private Square prev;
     private State state;    // this is required for the GUI to display progress
 
@@ -32,6 +32,12 @@ public class Square
      * Constructor for objects of class Square
      * @param row col type
      */
+    public Square(int r, int c, char t)
+    {
+        row = r;
+        col = c;
+        type = t;
+    }
 
 
     /**
@@ -39,6 +45,10 @@ public class Square
      *
      * @return    this square's row
      */
+    public int getRow()
+    {
+        return row;
+    }
 
 
     /**
@@ -46,6 +56,10 @@ public class Square
      *
      * @return    this square's column
      */
+    public int getCol()
+    {
+        return col;
+    }
 
 
     /**
@@ -53,6 +67,10 @@ public class Square
      *
      * @return    this square's type
      */
+    public char getType()
+    {
+        return type;
+    }
 
 
     /**
@@ -78,12 +96,20 @@ public class Square
      * Sets the square's state to the specified state
      *
      */
+    public void setState(State s)
+    {
+        state = s;
+    }
 
 
     /**
      * Resets this square
      *
      */
+    public void reset()
+    {
+        
+    }
 
     /**
      * toString method
@@ -91,6 +117,10 @@ public class Square
      * @return    string representation of the square
      * _, o, ., x, #, S, E
      */
+    public String toString()
+    {
+        return "" + state;
+    }
 
 
 }
