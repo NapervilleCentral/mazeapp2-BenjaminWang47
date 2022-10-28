@@ -20,14 +20,14 @@ public class Square
         ON_WORK_LIST,   // 'o'
         EXPLORED,       // '.'
         ON_PATH         // 'x'
-    };
+    }
 
     private int row;
     private int col;
     private char type;
     private Square prev;
     private State state;    // this is required for the GUI to display progress
-
+    
     /**
      * Constructor for objects of class Square
      * @param row col type
@@ -37,6 +37,7 @@ public class Square
         row = r;
         col = c;
         type = t;
+        state = State.UNEXPLORED;
     }
 
 
@@ -122,5 +123,5 @@ public class Square
         return "" + state;
     }
 
-
+    
 }

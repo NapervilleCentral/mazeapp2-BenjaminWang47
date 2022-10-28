@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -32,11 +33,34 @@ public class Maze
         int numRows = 0;
         int numCols = 0;
         File mazeFile = new File( fname );
-        Scanner in = null;
+        try
+        {
+            Scanner in = new Scanner(mazeFile);
+            numRows = in.nextInt();
+            numCols = in.nextInt();
+        }
+        catch(FileNotFoundException s)
+        {
+            System.out.println("The file inputted could not be found.");
+        }
 
         try
-        {}
+        {
+            this.maze = new Square[numRows][numCols];
 
+            for (int row=0; row < numRows; row++) {
+                for (int col=0; col < numCols; col++) {
+                    maze[row][col] = null;
+                }
+            }
+        }
+        catch(Exception NoSuchElementException)
+        {
+            System.out.println("Could not load the maze.");
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -47,7 +71,26 @@ public class Maze
      */
     public ArrayList<Square> getNeighbors( Square sq )
     {
-
+        ArrayList<Square> neighbors = new ArrayList<>();
+        
+        if (sq.getRow() - 1 > 0)//North
+        {
+            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+        }
+        if (sq.getCol() + 1 < maze[sq.getRow()].length)//East
+        {
+            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+        }
+        if (sq.getRow() + 1 > maze.length)//South
+        {
+            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+        }
+        if (sq.getCol() - 1 > 0)//West
+        {
+            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+        }
+        
+        return neighbors;
     }
 
     /**
@@ -55,16 +98,18 @@ public class Maze
      *
      * @return    the start square
      */
-    public String getStart()
+    public Square getStart()
     {
         for( int row = 0; row < this.maze.length; row++ )
         {
             for( int col = 0; col < this.maze[row].length; col++ )
             {
-                if (this.maze[row][col] == 'S')
+                if (this.maze[row][col].getType() == 'S')
                     return this.maze[row][col];
             }
         }
+        
+        return null;
     }
 
 
@@ -73,16 +118,18 @@ public class Maze
      *
      * @return    the finish square
      */
-    public String getExit()
+    public Square getExit()
     {
         for( int row = 0; row < this.maze.length; row++ )
         {
             for( int col = 0; col < this.maze[row].length; col++ )
             {
-                if (this.maze[row][col] == 'E')
+                if (this.maze[row][col].getType() == 'E')
                     return this.maze[row][col];
             }
-        }
+        } 
+        
+        return null;
     }
 
 
