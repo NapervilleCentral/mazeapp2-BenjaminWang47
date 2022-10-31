@@ -137,6 +137,16 @@ public class Maze
      * Returns the maze back to the initial state after loading.
      *
      */
+    public void reset()
+    {
+        for( int row = 0; row < this.maze.length; row++ )
+        {
+            for( int col = 0; col < this.maze[row].length; col++ )
+            {
+                this.maze[row][col].resetSquare();
+            }
+        } 
+    }
 
 
     /**

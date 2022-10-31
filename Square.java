@@ -107,9 +107,9 @@ public class Square
      * Resets this square
      *
      */
-    public void reset()
+    public void resetSquare()
     {
-        
+        this.state = State.UNEXPLORED;
     }
 
     /**
