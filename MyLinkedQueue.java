@@ -1,5 +1,5 @@
 import java.util.NoSuchElementException;
-
+import java.util.LinkedList;
 /**
  * Implementation of a queue
  *
@@ -7,15 +7,33 @@ import java.util.NoSuchElementException;
  * @version 1
  */
 
-public class MyQueue<T> implements QueueADT<T>
+public class MyLinkedQueue<T> implements QueueADT<T>
 {
-
+    private LinkedList<T> queue;
+    protected Node head;
+    protected Node tail;
+    
+    
     /**
      * Add an item to the queue
      * @param item the data item to add (of type T)
      */
-    public void enqueue(T item)
+    public void enqueue(T newElement)
     {
+        Node newNode = new Node();
+        newNode.data = newElement;
+        if(tail == null)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        
+        else
+        {
+            tail.next = newNode;
+            tail = newNode;
+        }
+        
     
     }
 
@@ -26,8 +44,15 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public T dequeue() throws NoSuchElementException
     {
-    
-    
+        if(head == null)
+        {
+            return null;
+        }
+        Node temp = new Node();
+        temp = head;
+        head = head.next;
+        return temp.data;
+        
     }
 
     /**
@@ -37,7 +62,7 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public T front() throws NoSuchElementException
     {
-    
+        return head.data;
     }
 
     /**
@@ -46,7 +71,7 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public int size()
     {
-    
+        return currentSize;
     }
 
     /**
@@ -55,7 +80,7 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public boolean isEmpty()
     {
-    
+        return head == null;
     }
 
     /**
@@ -63,8 +88,13 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public void clear()
     {
-    
+        this.queue.clear();
     }
-
+    
+    protected class Node
+    {
+        public Object data;
+        public Node next;
+    }
 
 }    
