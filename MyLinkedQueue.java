@@ -12,7 +12,7 @@ public class MyLinkedQueue<T> implements QueueADT<T>
     private LinkedList<T> queue;
     protected Node head;
     protected Node tail;
-    
+    private int currentSize;
     
     /**
      * Add an item to the queue
@@ -34,7 +34,7 @@ public class MyLinkedQueue<T> implements QueueADT<T>
             tail = newNode;
         }
         
-    
+        currentSize++;
     }
 
     /**
@@ -51,6 +51,7 @@ public class MyLinkedQueue<T> implements QueueADT<T>
         Node temp = new Node();
         temp = head;
         head = head.next;
+        currentSize--;
         return temp.data;
         
     }
@@ -93,7 +94,7 @@ public class MyLinkedQueue<T> implements QueueADT<T>
     
     protected class Node
     {
-        public Object data;
+        public T data;
         public Node next;
     }
 

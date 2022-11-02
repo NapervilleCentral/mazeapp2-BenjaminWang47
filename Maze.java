@@ -46,11 +46,14 @@ public class Maze
 
         try
         {
+            Scanner in = new Scanner(mazeFile);
+            in.next();
+            in.next();
             this.maze = new Square[numRows][numCols];
 
             for (int row=0; row < numRows; row++) {
                 for (int col=0; col < numCols; col++) {
-                    maze[row][col] = null;
+                    maze[row][col] = new Square(row, col, in.next().charAt(0));
                 }
             }
         }
@@ -73,21 +76,21 @@ public class Maze
     {
         ArrayList<Square> neighbors = new ArrayList<>();
         
-        if (sq.getRow() - 1 > 0)//North
+        if (sq.getRow() - 1 >= 0)//North
         {
             neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
         }
         if (sq.getCol() + 1 < maze[sq.getRow()].length)//East
         {
-            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+            neighbors.add(maze[sq.getRow()][sq.getCol() + 1]);
         }
-        if (sq.getRow() + 1 > maze.length)//South
+        if (sq.getRow() + 1 < maze.length)//South
         {
-            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+            neighbors.add(maze[sq.getRow() + 1][sq.getCol()]);
         }
-        if (sq.getCol() - 1 > 0)//West
+        if (sq.getCol() - 1 >= 0)//West
         {
-            neighbors.add(maze[sq.getRow() - 1][sq.getCol()]);
+            neighbors.add(maze[sq.getRow()][sq.getCol() - 1]);
         }
         
         return neighbors;

@@ -120,7 +120,7 @@ public class Square
      */
     public String toString()
     {
-        return "" + state;
+        return "" + type;
     }
 
     
