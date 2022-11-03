@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=MyQueue
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyQueue\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=MyQueue()
+comment2.params=newElement
+comment2.target=void\ enqueue(java.lang.Object)
+comment2.text=\r\n\ Add\ an\ item\ to\ the\ queue\r\n\ @param\ item\ the\ data\ item\ to\ add\ (of\ type\ T)\r\n
+comment3.params=
+comment3.target=java.lang.Object\ dequeue()
+comment3.text=\r\n\ Remove\ the\ front\ item\ from\ the\ queue\r\n\ @return\ the\ front\ item\ in\ the\ queue\r\n\ @throws\ NoSuchElementException\ if\ the\ queue\ is\ empty\r\n
+comment4.params=
+comment4.target=java.lang.Object\ front()
+comment4.text=\r\n\ Return\ the\ front\ item\ in\ the\ queue\ without\ removing\ it\r\n\ @return\ the\ front\ item\ in\ the\ queue\r\n\ @throws\ NoSuchElementException\ if\ the\ queue\ is\ empty\r\n
+comment5.params=
+comment5.target=int\ size()
+comment5.text=\r\n\ Find\ how\ many\ items\ are\ in\ the\ queue\r\n\ @return\ the\ number\ of\ items\ in\ the\ queue\r\n
+comment6.params=
+comment6.target=boolean\ isEmpty()
+comment6.text=\r\n\ Determine\ if\ the\ queue\ is\ empty\r\n\ @return\ true\ if\ the\ size\ is\ 0,\ false\ otherwise\r\n
+comment7.params=
+comment7.target=void\ clear()
+comment7.text=\r\n\ Clear\ out\ the\ data\ structure\r\n
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

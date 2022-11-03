@@ -19,12 +19,11 @@ public class MyStack<T> implements StackADT<T>
      */
     public MyStack()
     {
-        this.stack = new ArrayList<T>();
+        this.stack = new ArrayList<>();
         final int INITIAL_SIZE = 10;
-        buffer = new T[INITIAL_SIZE];
+        buffer = (T[]) new Object[INITIAL_SIZE];
         currentSize = 0;
     }
-
 
     /**
      * Add an item onto the stack
@@ -37,23 +36,21 @@ public class MyStack<T> implements StackADT<T>
         buffer[currentSize-1] = item;
     }
 
-
     /**
     Grows the buffer if the current size equals the buffer's capacity.
-    */
+     */
     private void growBufferIfNecessary()
     {
-         if (currentSize == buffer.length)
-           {
-                T[] newBuffer = new T[2*buffer.length];
-                for (int i = 0; i < buffer.length; i++)
-                {
-                    newBuffer[i] = buffer[(currentSize + i)%buffer.length];
-                }
-                buffer = newBuffer;
-           }
+        if (currentSize == buffer.length)
+        {
+            T[] newBuffer = (T[]) new Object[2*buffer.length];
+            for (int i = 0; i < buffer.length; i++)
+            {
+                newBuffer[i] = buffer[(currentSize + i)%buffer.length];
+            }
+            buffer = newBuffer;
+        }
     }
-
 
 
     /**
@@ -63,32 +60,34 @@ public class MyStack<T> implements StackADT<T>
      */
     public T pop() throws NoSuchElementException
     {
-         T temp = buffer[currentSize-1];
-         buffer[currentSize-1] = null;
-         currentSize--;
-         shrinkBufferIfNecessary();
-         return temp;
+        if (currentSize == 0) {
+            throw new NoSuchElementException();
+        }
+        T temp = buffer[currentSize-1];
+        buffer[currentSize-1] = null;
+        currentSize--;
+        shrinkBufferIfNecessary();
+        return temp;
     }
-    
+
     /**
-     Shrinks the buffer if the current size is less than a
-     quarter of the buffer's capacity.
-    */
+    Shrinks the buffer if the current size is less than a
+    quarter of the buffer's capacity.
+     */
     private void shrinkBufferIfNecessary()
     {
-         double ratio = currentSize / (double) buffer.length;
-          if (ratio < 0.25 && currentSize > 0)
-         {
-                T[] newBuffer = new T[buffer.length/2];
-                for (int i = 0; i < newBuffer.length; i++)
-                {
-                    newBuffer[i] = buffer[i];
-                }
-                buffer = newBuffer;
-         }
+        double ratio = currentSize / (double) buffer.length;
+        if (ratio < 0.25 && currentSize > 0)
+        {
+            T[] newBuffer = (T[]) new Object[buffer.length/2];
+            for (int i = 0; i < newBuffer.length; i++)
+            {
+                newBuffer[i] = buffer[i];
+            }
+            buffer = newBuffer;
+        }
     }
-    
-    
+
     /**
      * Display the top item from the stack without removing it
      * @return the top item in the stack
@@ -96,6 +95,9 @@ public class MyStack<T> implements StackADT<T>
      */
     public T top() throws NoSuchElementException
     {
+        if (currentSize == 0) {
+            throw new NoSuchElementException();
+        }
         return buffer[currentSize-1];
     }
 
@@ -122,7 +124,10 @@ public class MyStack<T> implements StackADT<T>
      */
     public void clear()
     {
-        this.stack.clear();
+        for (int i = 0; i < currentSize; i++) {
+            buffer[i] = null;
+        }
+        currentSize = 0;
     }
 
     public String toString()
