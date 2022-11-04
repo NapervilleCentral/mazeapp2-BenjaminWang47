@@ -41,14 +41,13 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public void enqueue(T newElement)
     {
-        Node newNode;
+        Node newNode = new Node(newElement, null);
         // link the new node into the queue\
-        if (queue.isEmpty()) {
-            newNode = new Node(newElement, null);
+        if (head == null) {
             head = newNode;
         }
         else {
-            newNode = new Node(newElement, tail);
+            tail.prev = newNode;
         }        
         // update the tail of the queue
         tail = newNode;
@@ -62,15 +61,13 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public T dequeue() throws NoSuchElementException
     {
-
         // throw an exception if the queue is empty
-        if(queue.isEmpty())
-        {
+        if(head == null) {
             throw new NoSuchElementException();
         }
 
         // update the head of the queue
-        if (currentSize == 1) {
+        if (head.prev == null) {
             Node removed = head;
             head = null;
             tail = null;
@@ -78,15 +75,10 @@ public class MyQueue<T> implements QueueADT<T>
         }
 
         Node removed = head;
-        Node idontnode = tail;
-        while (idontnode.prev != head) {
-            idontnode = idontnode.prev;
-        }
-        head = idontnode;
-        head.prev = null;
+        head = head.prev;
 
         // update the tail of the queue, if necessary
-        if (queue.isEmpty()) {
+        if (head == null) {
             tail = null;
         }
         currentSize--;
@@ -100,7 +92,7 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public T front() throws NoSuchElementException
     {
-        if (queue.isEmpty()) {
+        if (head == null) {
             throw new NoSuchElementException();
         }
         return head.val;
@@ -121,7 +113,7 @@ public class MyQueue<T> implements QueueADT<T>
      */
     public boolean isEmpty()
     {
-        return currentSize == 0;
+        return head == null;
     }
 
     /**
