@@ -102,7 +102,15 @@ public class Square
         state = s;
     }
 
-
+    /**
+     * Gets the square's state
+     *
+     */
+    public State getState()
+    {
+        return state;
+    }
+    
     /**
      * Resets this square
      *

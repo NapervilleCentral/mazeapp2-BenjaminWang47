@@ -76,19 +76,29 @@ public abstract class MazeSolver
     {
         String path = "";
 
-        if (!isSolved()) {
-            path += "Maze is not solved yet!";
+        if (this.foundExit) {
+            MyStack<String> stackPath = new MyStack<String>();
+            Square sq = this.maze.getExit();
+            
+            while(sq != null)
+            {
+                sq.setState(Square.State.ON_PATH);
+                stackPath.push("[" + sq.getRow() + ", " + sq.getCol() + "]");
+                sq = sq.getPrev();
+            }
+            
+            while(!stackPath.isEmpty())
+            {
+                path += stackPath.pop();
+            }
         }
-        else {
-            if (foundExit == true) {
-                path += "Maze has no solution!";
-            }
-            else {
-                path += "Solution is: \n";
-                while (!isEmpty()) {
-                    path += next() + "\n";
-                }
-            }
+        else if(this.isEmpty())
+        {
+            path = "The maze has no solution.";
+        }
+        else if (!this.isSolved())
+        {
+            path = "The maze hasn't been solved yet.";
         }
 
         return path;
@@ -103,17 +113,42 @@ public abstract class MazeSolver
     public Square step()
     {
         // check if the maze cannot be solved
+        Square rectangle;
         if( this.isEmpty() )
         {
             return null;
         }
-
-        return square;
+        else {
+            Square sq = this.next();
+            if (sq == this.maze.getExit()) {
+                System.out.println(this.getPath());
+                return sq;
+            }
+            
+            ArrayList<Square> neighbors = this.maze.getNeighbors(sq);
+            for (int i = 0; i < neighbors.size(); i++) {
+                Square sq1 = neighbors.get(i);
+                if (sq1.getState() == Square.State.UNEXPLORED) {
+                    this.add(sq1);
+                    sq1.setState(Square.State.ON_WORK_LIST);
+                }
+            }
+            
+            sq.setState(Square.State.EXPLORED);
+            rectangle = sq;
+        }
+        
+        return rectangle;
     }
 
     /**
      * Repeatedly calls step() until you get to the exit square or the worklist is empty.
      *
      */
+    public void solve() {
+        while (!foundExit && !this.isEmpty()) {
+            step();
+        }
+    }
 
 }
