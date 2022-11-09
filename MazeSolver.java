@@ -113,7 +113,6 @@ public abstract class MazeSolver
     public Square step()
     {
         // check if the maze cannot be solved
-        Square rectangle;
         if( this.isEmpty() )
         {
             return null;
@@ -129,16 +128,15 @@ public abstract class MazeSolver
             for (int i = 0; i < neighbors.size(); i++) {
                 Square sq1 = neighbors.get(i);
                 if (sq1.getState() == Square.State.UNEXPLORED) {
+                    //this.maze.
                     this.add(sq1);
                     sq1.setState(Square.State.ON_WORK_LIST);
+                    sq1.setType('o');
                 }
             }
             
-            sq.setState(Square.State.EXPLORED);
-            rectangle = sq;
+            return sq;
         }
-        
-        return rectangle;
     }
 
     /**

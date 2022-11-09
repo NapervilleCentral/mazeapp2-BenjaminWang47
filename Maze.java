@@ -53,7 +53,15 @@ public class Maze
 
             for (int row=0; row < numRows; row++) {
                 for (int col=0; col < numCols; col++) {
-                    maze[row][col] = new Square(row, col, in.next().charAt(0));
+                    int nextSquare = in.nextInt();
+                    if(nextSquare == 0)
+                        maze[row][col] = new Square(row, col, '_');
+                    if(nextSquare == 1)
+                        maze[row][col] = new Square(row, col, '#');
+                    if(nextSquare == 2)
+                        maze[row][col] = new Square(row, col, 'S');
+                    if(nextSquare == 3)
+                        maze[row][col] = new Square(row, col, 'E');
                 }
             }
         }

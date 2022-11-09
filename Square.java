@@ -93,6 +93,10 @@ public class Square
         this.prev = prev;
     }
 
+    public void setType(char t) {
+        type = t;
+    }
+    
     /**
      * Sets the square's state to the specified state
      *

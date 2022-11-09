@@ -5,29 +5,46 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MazeSolverStack
+public class MazeSolverStack extends MazeSolver
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class MazeSolverStack
-     */
-    public MazeSolverStack()
-    {
-        // initialise instance variables
-        x = 0;
+    MyStack<Square> stack;
+    
+    public MazeSolverStack(Maze maze) {
+        super(maze);
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Create an empty worklist
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void makeEmpty(){
+        stack = new MyStack<Square>();
+    }
+
+    /**
+     * Returns true if the worklist is empty
+     *
+     *  @return true if the worklist is empty
+     */
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    /**
+     * Adds the specified square to the worklist
+     *
+     *  @param the square to add to the worklist
+     */
+    public void add(Square sq) {
+        stack.push(sq);
+    }
+
+    /**
+     * Returns the next item from the worklist
+     *
+     *  @return the next item from the worklist
+     */
+    public Square next() {
+        return stack.pop();
     }
 }
