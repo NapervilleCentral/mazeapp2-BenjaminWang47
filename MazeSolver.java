@@ -132,6 +132,13 @@ public abstract class MazeSolver
                         this.add(sq1);
                     }
                 }
+                
+                else if (sq1.getState() == Square.State.ON_WORK_LIST) {
+                    //this.maze.
+                    this.add(sq1);
+                    sq1.setState(Square.State.EXPLORED);
+                    sq1.setType('.');
+                }
             }
 
             return sq;
