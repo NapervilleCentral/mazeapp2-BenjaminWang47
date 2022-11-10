@@ -37,6 +37,8 @@ public class MazeSolverQueue extends MazeSolver
      *  @param the square to add to the worklist
      */
     public void add(Square sq) {
+        sq.setState(Square.State.ON_WORK_LIST);
+        sq.setType('o');
         queue.enqueue(sq);
     }
 

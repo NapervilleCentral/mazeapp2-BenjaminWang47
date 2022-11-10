@@ -59,7 +59,7 @@ public abstract class MazeSolver
      *  @return if the maze is solved
      */
     public boolean isSolved() {
-        if (isEmpty()) {
+        if (this.isEmpty()) {
             return true;
         }
         return foundExit;
@@ -79,14 +79,14 @@ public abstract class MazeSolver
         if (this.foundExit) {
             MyStack<String> stackPath = new MyStack<String>();
             Square sq = this.maze.getExit();
-            
+
             while(sq != null)
             {
                 sq.setState(Square.State.ON_PATH);
                 stackPath.push("[" + sq.getRow() + ", " + sq.getCol() + "]");
                 sq = sq.getPrev();
             }
-            
+
             while(!stackPath.isEmpty())
             {
                 path += stackPath.pop();
@@ -113,28 +113,27 @@ public abstract class MazeSolver
     public Square step()
     {
         // check if the maze cannot be solved
-        if( this.isEmpty() )
+        if(this.isEmpty())
         {
             return null;
         }
         else {
             Square sq = this.next();
-            if (sq == this.maze.getExit()) {
+            if (sq.getType() == 'E') {
                 System.out.println(this.getPath());
                 return sq;
             }
-            
+
             ArrayList<Square> neighbors = this.maze.getNeighbors(sq);
             for (int i = 0; i < neighbors.size(); i++) {
                 Square sq1 = neighbors.get(i);
-                if (sq1.getState() == Square.State.UNEXPLORED) {
-                    //this.maze.
-                    this.add(sq1);
-                    sq1.setState(Square.State.ON_WORK_LIST);
-                    sq1.setType('o');
+                if (sq1.getType() != '#') {
+                    if (sq1.getState() == Square.State.UNEXPLORED) {
+                        this.add(sq1);
+                    }
                 }
             }
-            
+
             return sq;
         }
     }
