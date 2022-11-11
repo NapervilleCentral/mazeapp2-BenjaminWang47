@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MazeTester
-comment0.text=\r\n\ Testing\ the\ Maze\ Class\r\n
+comment0.text=\n\ Testing\ the\ Maze\ Class\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 numComments=2

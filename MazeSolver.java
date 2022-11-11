@@ -22,7 +22,9 @@ public abstract class MazeSolver
         this.maze = maze;
         this.foundExit = false;
         this.makeEmpty();
-        this.add(this.maze.getStart());
+        Square sq = this.maze.getStart();
+        sq.setState(Square.State.ON_WORK_LIST);
+        this.add(sq);
     }
 
     /**
@@ -59,10 +61,7 @@ public abstract class MazeSolver
      *  @return if the maze is solved
      */
     public boolean isSolved() {
-        if (this.isEmpty()) {
-            return true;
-        }
-        return foundExit;
+        return foundExit || this.isEmpty();
     }
 
     /**
@@ -92,13 +91,11 @@ public abstract class MazeSolver
                 path += stackPath.pop();
             }
         }
-        else if(this.isEmpty())
-        {
-            path = "The maze has no solution.";
-        }
-        else if (!this.isSolved())
-        {
+        else if (!this.isSolved()) {
             path = "The maze hasn't been solved yet.";
+        }
+        else if(this.isEmpty()) {
+            path = "The maze has no solution.";
         }
 
         return path;
@@ -112,32 +109,27 @@ public abstract class MazeSolver
      */
     public Square step()
     {
-        // check if the maze cannot be solved
         if(this.isEmpty())
         {
+            this.foundExit = true;
             return null;
         }
         else {
             Square sq = this.next();
-            if (sq.getType() == 'E') {
-                System.out.println(this.getPath());
+            sq.setState(Square.State.EXPLORED);
+
+            if (sq == this.maze.getExit()) {
+                this.foundExit = true;
                 return sq;
             }
-
+            
             ArrayList<Square> neighbors = this.maze.getNeighbors(sq);
             for (int i = 0; i < neighbors.size(); i++) {
                 Square sq1 = neighbors.get(i);
-                if (sq1.getType() != '#') {
-                    if (sq1.getState() == Square.State.UNEXPLORED) {
-                        this.add(sq1);
-                    }
-                }
-                
-                else if (sq1.getState() == Square.State.ON_WORK_LIST) {
-                    //this.maze.
+                if (sq1.getType() != '#' && sq1.getState() == Square.State.UNEXPLORED) {
+                    sq1.setState(Square.State.ON_WORK_LIST);
                     this.add(sq1);
-                    sq1.setState(Square.State.EXPLORED);
-                    sq1.setType('.');
+                    sq1.setPrev(sq);
                 }
             }
 
@@ -150,9 +142,8 @@ public abstract class MazeSolver
      *
      */
     public void solve() {
-        while (!foundExit && !this.isEmpty()) {
-            step();
+        while (!this.isSolved()) {
+            this.step();
         }
     }
-
 }

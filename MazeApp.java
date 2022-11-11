@@ -19,7 +19,7 @@ public class MazeApp extends JFrame implements ActionListener {
     private static int fontSize = 16;
 
     // Initial interval between animation in milliseconds
-    private static int timerInterval = 500; 
+    private static int timerInterval = 30; 
 
     private static final long serialVersionUID = 6228378229836664288L;
 
@@ -264,6 +264,7 @@ public class MazeApp extends JFrame implements ActionListener {
             if (solver.isSolved()) {
                 solveButton();
                 timer.stop();
+                updateMaze();
             }
         }
         updateMaze();

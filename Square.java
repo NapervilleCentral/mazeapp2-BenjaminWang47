@@ -132,8 +132,18 @@ public class Square
      */
     public String toString()
     {
+        if (type == '_') {
+            if (state == State.ON_WORK_LIST) {
+                return "o";
+            }
+            if (state == State.EXPLORED) {
+                return ".";
+            }
+            if (state == State.ON_PATH) {
+                return "x";
+            }
+        }
+        
         return "" + type;
     }
-
-    
 }

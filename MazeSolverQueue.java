@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class MazeSolverQueue here.
  *
@@ -17,9 +16,8 @@ public class MazeSolverQueue extends MazeSolver
      * Create an empty worklist
      *
      */
-    public void makeEmpty(){
+    public void makeEmpty() {
         queue = new MyQueue<Square>();
-        this.add(this.maze.getStart());
     }
 
     /**
@@ -37,8 +35,6 @@ public class MazeSolverQueue extends MazeSolver
      *  @param the square to add to the worklist
      */
     public void add(Square sq) {
-        sq.setState(Square.State.ON_WORK_LIST);
-        sq.setType('o');
         queue.enqueue(sq);
     }
 
