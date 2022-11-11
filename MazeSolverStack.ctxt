@@ -1,18 +1,18 @@
 #BlueJ class context
 comment0.target=MazeSolverStack
-comment0.text=\n\ Write\ a\ description\ of\ class\ MazeSolverStack\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ MazeSolverStack\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=maze
 comment1.target=MazeSolverStack(Maze)
 comment2.params=
 comment2.target=void\ makeEmpty()
-comment2.text=\n\ Create\ an\ empty\ worklist\n\n
+comment2.text=\r\n\ Create\ an\ empty\ worklist\r\n\r\n
 comment3.params=
 comment3.target=boolean\ isEmpty()
-comment3.text=\n\ Returns\ true\ if\ the\ worklist\ is\ empty\n\n\ \ @return\ true\ if\ the\ worklist\ is\ empty\n
+comment3.text=\r\n\ Returns\ true\ if\ the\ worklist\ is\ empty\r\n\r\n\ \ @return\ true\ if\ the\ worklist\ is\ empty\r\n
 comment4.params=sq
 comment4.target=void\ add(Square)
-comment4.text=\n\ Adds\ the\ specified\ square\ to\ the\ worklist\n\n\ \ @param\ the\ square\ to\ add\ to\ the\ worklist\n
+comment4.text=\r\n\ Adds\ the\ specified\ square\ to\ the\ worklist\r\n\r\n\ \ @param\ the\ square\ to\ add\ to\ the\ worklist\r\n
 comment5.params=
 comment5.target=Square\ next()
-comment5.text=\n\ Returns\ the\ next\ item\ from\ the\ worklist\n\n\ \ @return\ the\ next\ item\ from\ the\ worklist\n
+comment5.text=\r\n\ Returns\ the\ next\ item\ from\ the\ worklist\r\n\r\n\ \ @return\ the\ next\ item\ from\ the\ worklist\r\n
 numComments=6
